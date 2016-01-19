@@ -16,4 +16,15 @@ public class Profile_Matches_Criteria {
 
         assertThat(profile.matches(criteria), is(false));
     }
+
+    @Test
+    public void score_is_0_when_empty() {
+        Profile profile = new Profile("Test Profile");
+
+        Criteria criteria = new Criteria();
+
+        profile.matches(criteria);
+
+        assertThat(profile.score(), is(0));
+    }
 }
