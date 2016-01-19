@@ -24,7 +24,7 @@ public class Profile_Matches_Criterion {
     }
 
     @Test
-    public void true_when_has_single_and_dont_care() {
+    public void true_when_dont_care() {
 
         Answer criterionAnswer = new Answer(question, Bool.TRUE);
         Criterion criterion = new Criterion(criterionAnswer, Weight.DontCare);
@@ -34,7 +34,7 @@ public class Profile_Matches_Criterion {
     }
 
     @Test
-    public void score_is_weight_value_when_has_single_and_dont_care() {
+    public void score_is_weight_value_when_dont_care() {
 
         Answer criterionAnswer = new Answer(question, Bool.TRUE);
         Criterion criterion = new Criterion(criterionAnswer, Weight.DontCare);
@@ -47,7 +47,7 @@ public class Profile_Matches_Criterion {
 
 
     @Test
-    public void true_when_has_single_and_match() {
+    public void true_when_match() {
 
         Answer criterionAnswer = new Answer(question, Bool.FALSE);
         Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
@@ -57,7 +57,7 @@ public class Profile_Matches_Criterion {
     }
 
     @Test
-    public void score_is_weight_value_when_has_single_and_match() {
+    public void score_is_weight_value_when_match() {
 
         Answer criterionAnswer = new Answer(question, Bool.FALSE);
         Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
@@ -69,7 +69,7 @@ public class Profile_Matches_Criterion {
     }
 
     @Test
-    public void false_when_has_single_and_not_match() {
+    public void false_when_not_match() {
 
         Answer criterionAnswer = new Answer(question, Bool.TRUE);
         Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
@@ -79,7 +79,7 @@ public class Profile_Matches_Criterion {
     }
 
     @Test
-    public void score_is_0_when_has_single_and_not_match() {
+    public void score_is_0_when_not_match() {
 
         Answer criterionAnswer = new Answer(question, Bool.TRUE);
         Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
