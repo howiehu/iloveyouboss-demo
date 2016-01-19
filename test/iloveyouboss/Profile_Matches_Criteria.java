@@ -55,4 +55,27 @@ public class Profile_Matches_Criteria {
 
         assertThat(profile.score(), is(Weight.DontCare.getValue()));
     }
+
+
+    @Test
+    public void true_when_match() {
+
+        Answer criterionAnswer = new Answer(question, Bool.FALSE);
+        Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
+        criteria.add(criterion);
+
+        assertThat(profile.matches(criteria), is(true));
+    }
+
+    @Test
+    public void score_is_weight_value_when_match() {
+
+        Answer criterionAnswer = new Answer(question, Bool.FALSE);
+        Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
+        criteria.add(criterion);
+
+        profile.matches(criteria);
+
+        assertThat(profile.score(), is(Weight.Important.getValue()));
+    }
 }
