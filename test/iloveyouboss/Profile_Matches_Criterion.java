@@ -26,8 +26,7 @@ public class Profile_Matches_Criterion {
     @Test
     public void true_when_dont_care() {
 
-        Answer criterionAnswer = new Answer(question, Bool.TRUE);
-        Criterion criterion = new Criterion(criterionAnswer, Weight.DontCare);
+        Criterion criterion = generateDontCareCriterion();
         criteria.add(criterion);
 
         assertThat(profile.matches(criteria), is(true));
@@ -36,8 +35,7 @@ public class Profile_Matches_Criterion {
     @Test
     public void score_is_weight_value_when_dont_care() {
 
-        Answer criterionAnswer = new Answer(question, Bool.TRUE);
-        Criterion criterion = new Criterion(criterionAnswer, Weight.DontCare);
+        Criterion criterion = generateDontCareCriterion();
         criteria.add(criterion);
 
         profile.matches(criteria);
@@ -45,12 +43,10 @@ public class Profile_Matches_Criterion {
         assertThat(profile.score(), is(Weight.DontCare.getValue()));
     }
 
-
     @Test
     public void true_when_match() {
 
-        Answer criterionAnswer = new Answer(question, Bool.FALSE);
-        Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
+        Criterion criterion = generateMatchCriterion();
         criteria.add(criterion);
 
         assertThat(profile.matches(criteria), is(true));
@@ -59,8 +55,7 @@ public class Profile_Matches_Criterion {
     @Test
     public void score_is_weight_value_when_match() {
 
-        Answer criterionAnswer = new Answer(question, Bool.FALSE);
-        Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
+        Criterion criterion = generateMatchCriterion();
         criteria.add(criterion);
 
         profile.matches(criteria);
@@ -71,8 +66,7 @@ public class Profile_Matches_Criterion {
     @Test
     public void false_when_not_match() {
 
-        Answer criterionAnswer = new Answer(question, Bool.TRUE);
-        Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
+        Criterion criterion = generateNotMatchCriterion();
         criteria.add(criterion);
 
         assertThat(profile.matches(criteria), is(false));
@@ -81,12 +75,26 @@ public class Profile_Matches_Criterion {
     @Test
     public void score_is_0_when_not_match() {
 
-        Answer criterionAnswer = new Answer(question, Bool.TRUE);
-        Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
+        Criterion criterion = generateNotMatchCriterion();
         criteria.add(criterion);
 
         profile.matches(criteria);
 
         assertThat(profile.score(), is(0));
+    }
+
+    private Criterion generateDontCareCriterion() {
+        Answer criterionAnswer = new Answer(question, Bool.TRUE);
+        return new Criterion(criterionAnswer, Weight.DontCare);
+    }
+
+    private Criterion generateMatchCriterion() {
+        Answer criterionAnswer = new Answer(question, Bool.FALSE);
+        return new Criterion(criterionAnswer, Weight.Important);
+    }
+
+    private Criterion generateNotMatchCriterion() {
+        Answer criterionAnswer = new Answer(question, Bool.TRUE);
+        return new Criterion(criterionAnswer, Weight.Important);
     }
 }
