@@ -9,27 +9,27 @@ import static org.junit.Assert.*;
 public class Profile_Matches_Criteria {
 
     private Profile profile;
+    private Criteria criteria;
 
     @Before
     public void setUp() throws Exception {
         profile = new Profile("Test Profile");
+        criteria = new Criteria();
     }
 
     @Test
     public void false_when_empty() {
-        assertThat(profile.matches(new Criteria()), is(false));
+        assertThat(profile.matches(criteria), is(false));
     }
 
     @Test
     public void score_is_0_when_empty() {
-        profile.matches(new Criteria());
+        profile.matches(criteria);
         assertThat(profile.score(), is(0));
     }
 
     @Test
     public void true_when_has_single_criterion_and_dont_care() {
-
-        Criteria criteria = new Criteria();
 
         Question question = new BooleanQuestion(1, "Test Question");
         Answer criterionAnswer = new Answer(question, Bool.TRUE);
@@ -44,8 +44,6 @@ public class Profile_Matches_Criteria {
 
     @Test
     public void score_is_weight_value_when_has_single_criterion_and_dont_care() {
-
-        Criteria criteria = new Criteria();
 
         Question question = new BooleanQuestion(1, "Test Question");
         Answer criterionAnswer = new Answer(question, Bool.TRUE);
