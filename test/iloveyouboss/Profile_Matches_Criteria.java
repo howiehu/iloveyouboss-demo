@@ -78,4 +78,26 @@ public class Profile_Matches_Criteria {
 
         assertThat(profile.score(), is(Weight.Important.getValue()));
     }
+
+    @Test
+    public void false_when_has_single_and_not_match() {
+
+        Answer criterionAnswer = new Answer(question, Bool.TRUE);
+        Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
+        criteria.add(criterion);
+
+        assertThat(profile.matches(criteria), is(false));
+    }
+
+    @Test
+    public void score_is_0_when_has_single_and_not_match() {
+
+        Answer criterionAnswer = new Answer(question, Bool.TRUE);
+        Criterion criterion = new Criterion(criterionAnswer, Weight.Important);
+        criteria.add(criterion);
+
+        profile.matches(criteria);
+
+        assertThat(profile.score(), is(0));
+    }
 }
